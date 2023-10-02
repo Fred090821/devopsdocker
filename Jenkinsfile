@@ -22,14 +22,12 @@ pipeline {
                             bat '''
                                docker version
                                docker info
-                               docker compose version
                                python3 --version
                             '''
                         } else {
                             sh '''
                               docker version
                               docker info
-                              docker compose version
                               python3 --version
                             '''
                         }
@@ -192,13 +190,11 @@ pipeline {
                 try{
                     if (checkOs() == 'Windows') {
                          bat '''
-                              /usr/bin/python3 clean_environment.py
                               docker system prune -a -f
                               docker logout
                          '''
                     } else {
                          sh '''
-                            /usr/bin/python3 clean_environment.py
                             docker system prune -a -f
                             docker logout
                          '''
