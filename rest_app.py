@@ -7,7 +7,8 @@ import pymysql
 from flask import Flask, jsonify, request
 
 import config
-from db_connector import connect_to_database, close_connection, get_next_available_row_id_from_db
+from db_connector import connect_to_database, close_connection, get_next_available_row_id_from_db, setup_database, \
+    populate_config_table
 
 app = Flask(__name__)
 
@@ -231,4 +232,7 @@ def shutdown():
 
 
 if __name__ == '__main__':
+    logging.info("Setting up database tables at class level...")
+    setup_database()
+    populate_config_table()
     app.run(host='127.0.0.1', debug=True, port=5003)

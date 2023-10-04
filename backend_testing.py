@@ -5,8 +5,8 @@ import pymysql
 import pytest
 import requests
 
-from db_connector import connect_to_database, close_connection, setup_database, \
-    get_app_configuration_from_db, populate_config_table
+from db_connector import connect_to_database, close_connection, \
+    get_app_configuration_from_db
 
 
 # Post a new user data to the REST API using POST method.
@@ -23,9 +23,6 @@ class IntegrationTests(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        logging.info("Setting up database tables at class level...")
-        setup_database()
-        populate_config_table()
 
         logging.info("Retrieving data from config table at class level...")
 
